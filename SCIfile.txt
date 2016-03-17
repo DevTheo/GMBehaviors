@@ -1,4 +1,0 @@
-DevTheo
--1
-secret12
-True
