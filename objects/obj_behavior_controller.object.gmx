@@ -26,25 +26,15 @@
           <argument>
             <kind>1</kind>
             <string>/// Set up base
-if (is_undefined(global.evt_behavior_init))
-{
-    self.evt_behavior_init = global.evt_behavior_init = ev_user0;
-    self.evt_event_bind = global.evt_event_bind = ev_user1;
-} 
-else 
-{
-    self.evt_behavior_init = global.evt_behavior_init;
-    self.evt_event_bind = global.evt_event_bind;
-}
+self.behaviors = ds_list_create();
+self.events = ds_map_create();
 
-
-event_perform(self.evt_behavior_init, 0);
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="11">
+    <event eventtype="6" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -61,21 +51,76 @@ event_perform(self.evt_behavior_init, 0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Setup events
-var behavior = argument0;
-var event_name = argument1;
+            <string>/// Exec Behavior functions
+var key = "leftbutton";
 
-if (is_undefined(self.events))
-{
-    self.events = ds_map_create();
+var behaviors = self.events[? key];
+
+var behaviorCount = ds_list_size(behaviors);
+
+for (var i=0; i&lt;behaviorCount; i++) {
+    var behavior = ds_list_find_value(behaviors, i);
+    var events = behavior[? "events"];
+    if (ds_map_exists(events, key)) {
+        var scrNum = events[? key];
+        script_execute(scrNum, behavior);
+    }
 }
-if (!ds_map_exists(self.events, event_name))
-{
-    self.events[? event_name] = ds_list_create();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Fill Event List
+
+var behaviorCount = ds_list_size(self.behaviors);
+
+for (var i=0; i&lt;behaviorCount; i++) {
+    var behavior = ds_list_find_value(self.behaviors, i);
+    var events = behavior[? "events"];
+    var keys = events[? "keys"];
+    var keyCount = ds_list_size(keys);
+    for (var x=0; x&lt;keyCount; x++) {
+        var key = ds_list_find_value(keys, x);
+        
+        if (!ds_map_exists(self.events, key)) {
+            self.events[? key] = ds_list_create();
+        }
+        ds_list_add(self.events[? key], behavior);
+    }
 }
 
+var key = "gamestart";
 
-ds_list_add(self.events[? event_name], behavior);
+var behaviors = self.events[? key];
+
+var behaviorCount = ds_list_size(behaviors);
+
+for (var i=0; i&lt;behaviorCount; i++) {
+    var behavior = ds_list_find_value(behaviors, i);
+    var events = behavior[? "events"];
+    if (ds_map_exists(events, key)) {
+        var scrNum = events[? key];
+        script_execute(scrNum, behavior);
+    }
+}
 </string>
           </argument>
         </arguments>
