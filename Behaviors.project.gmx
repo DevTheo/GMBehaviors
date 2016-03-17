@@ -27,8 +27,8 @@
     <object>objects\obj_mnu_shooter</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\Menu</room>
-    <room>rooms\Shooter</room>
+    <room>rooms\rm_menu</room>
+    <room>rooms\rm_shooter</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
