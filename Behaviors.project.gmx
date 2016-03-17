@@ -8,6 +8,7 @@
   <sprites name="sprites">
     <sprite>sprites\spr_mnu_shooter</sprite>
     <sprite>sprites\sprite1</sprite>
+    <sprite>sprites\spr_player</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -18,6 +19,10 @@
         <script>scripts\scr_GotoRoomOnClickBehavior_click.gml</script>
       </scripts>
       <script>scripts\scr_create_behavior_base.gml</script>
+      <scripts name="SimpleKeyboardMovementBehavior">
+        <script>scripts\scr_create_SimpleKeyboardMovementBehavior.gml</script>
+        <script>scripts\scr_SimpleKeyboardMovementBehavior_step.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -25,6 +30,7 @@
       <object>objects\obj_behavior_controller</object>
     </objects>
     <object>objects\obj_mnu_shooter</object>
+    <object>objects\obj_player</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>
