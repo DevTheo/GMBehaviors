@@ -23,6 +23,20 @@
         <script>scripts\SimpleKeyboardMovementBehavior.gml</script>
         <script>scripts\scr_SimpleKeyboardMovementBehavior_step.gml</script>
       </scripts>
+      <scripts name="Properties">
+        <script>scripts\scr_BehaviorProp_UpKey.gml</script>
+        <script>scripts\scr_BehaviorProp_Room.gml</script>
+        <script>scripts\scr_BehaviorProp_DownKey.gml</script>
+        <script>scripts\scr_BehaviorProp_LeftKey.gml</script>
+        <script>scripts\scr_BehaviorProp_RightKey.gml</script>
+        <script>scripts\scr_BehaviorProp_MoveSpeed.gml</script>
+        <script>scripts\scr_BehaviorProp_Constrain.gml</script>
+        <script>scripts\scr_BehaviorProp_ConstrainX.gml</script>
+        <script>scripts\scr_BehaviorProp_ConstrainY.gml</script>
+        <script>scripts\scr_BehaviorProp_ConstrainH.gml</script>
+        <script>scripts\scr_BehaviorProp_ConstrainW.gml</script>
+        <script>scripts\scr_behavior_property.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <objects name="objects">

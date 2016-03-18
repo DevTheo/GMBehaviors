@@ -33,6 +33,22 @@ obj[? "keyDown"] = keyDown;
 obj[? "keyLeft"] = keyLeft;
 obj[? "keyRight"] = keyRight;
 
+obj[? "constrainX"] = 0;
+obj[? "constrainY"] = 0;
+obj[? "constrainH"] = room_height;
+obj[? "constrainW"] = room_width;
+
+obj[? "prop_keyUp"] = scr_BehaviorProp_UpKey;
+obj[? "prop_keyDown"] = scr_BehaviorProp_DownKey;
+obj[? "prop_keyLeft"] = scr_BehaviorProp_LeftKey;
+obj[? "prop_keyRight"] = scr_BehaviorProp_RightKey;
+obj[? "prop_constrain"] = scr_BehaviorProp_Constrain;
+obj[? "prop_MoveSpeed"] = scr_BehaviorProp_MoveSpeed;
+obj[? "prop_ConstrainX"] = scr_BehaviorProp_ConstrainX;
+obj[? "prop_ConstrainY"] = scr_BehaviorProp_ConstrainY;
+obj[? "prop_ConstrainHeight"] = scr_BehaviorProp_ConstrainH;
+obj[? "prop_ConstrainWidth"] = scr_BehaviorProp_ConstrainW;
+
 var events = obj[? "events"];
 
 ds_list_add(events[? "keys"], "step");
