@@ -39,7 +39,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_list_add(self.behaviors, scr_create_GotoRoomOnClickBehavior(self, rm_shooter));
+            <string>GotoRoomOnClickBehavior(self, rm_shooter);
 </string>
           </argument>
         </arguments>

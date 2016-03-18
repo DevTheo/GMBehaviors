@@ -10,5 +10,8 @@ events[? "leftbutton"] = scr_GotoRoomOnClickBehavior_click;
 
 obj[? "events"] = events;
 
-//event_perform_object(obj[? "target"], ev_user1, obj);
+if (!is_undefined(argument0.behaviors)) {
+    ds_list_add(argument0.behaviors, obj);
+}
+
 return obj;

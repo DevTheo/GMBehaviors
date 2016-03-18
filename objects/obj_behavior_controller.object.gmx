@@ -28,7 +28,7 @@
             <string>/// Set up base
 self.behaviors = ds_list_create();
 self.events = ds_map_create();
-
+self.inited = false;
 </string>
           </argument>
         </arguments>
@@ -51,10 +51,50 @@ self.events = ds_map_create();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Exec Behavior functions
-var key = "step";
+            <string>/// Fill Event List
+if (self.inited == false) {
+    var behaviorCount = ds_list_size(self.behaviors);
+    
+    for (var i=0; i&lt;behaviorCount; i++) {
+        var behavior = ds_list_find_value(self.behaviors, i);
+        var events = behavior[? "events"];
+        var keys = events[? "keys"];
+        var keyCount = ds_list_size(keys);
+        for (var z=0; z&lt;keyCount; z++) {
+            var key = ds_list_find_value(keys, z);
+            
+            if (!ds_map_exists(self.events, key)) {
+                self.events[? key] = ds_list_create();
+            }
+            ds_list_add(self.events[? key], behavior);
+        }
+    }
+    self.inited = true;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var key = "step";
+
 if(ds_map_exists(self.events, key))
-{    
+{
     var behaviors = self.events[? key];
     
     var behaviorCount = ds_list_size(behaviors);
@@ -94,83 +134,6 @@ if(ds_map_exists(self.events, key))
 var key = "leftbutton";
 if(ds_map_exists(self.events, key))
 {    
-    var behaviors = self.events[? key];
-    
-    var behaviorCount = ds_list_size(behaviors);
-    
-    for (var i=0; i&lt;behaviorCount; i++) {
-        var behavior = ds_list_find_value(behaviors, i);
-        var events = behavior[? "events"];
-        if (ds_map_exists(events, key)) {
-            var scrNum = events[? key];
-            script_execute(scrNum, behavior);
-        }
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Fill Event List
-
-var behaviorCount = ds_list_size(self.behaviors);
-
-for (var i=0; i&lt;behaviorCount; i++) {
-    var behavior = ds_list_find_value(self.behaviors, i);
-    var events = behavior[? "events"];
-    var keys = events[? "keys"];
-    var keyCount = ds_list_size(keys);
-    for (var z=0; z&lt;keyCount; z++) {
-        var key = ds_list_find_value(keys, z);
-        
-        if (!ds_map_exists(self.events, key)) {
-            self.events[? key] = ds_list_create();
-        }
-        ds_list_add(self.events[? key], behavior);
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>var key = "gamestart";
-
-if(ds_map_exists(self.events, key))
-{
     var behaviors = self.events[? key];
     
     var behaviorCount = ds_list_size(behaviors);
