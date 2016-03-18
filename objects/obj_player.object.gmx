@@ -39,7 +39,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>SimpleKeyboardMovementBehavior(self, 5);
+            <string>var joystickNum = -1; 
+if (joystick_exists(1))
+    joystickNum = 1;
+if (joystickNum == -1 &amp;&amp; joystick_exists(2))
+    joystickNum = 2;
+
+script_execute(SimpleMovableBehavior, self, 5, joystickNum);
 </string>
           </argument>
         </arguments>

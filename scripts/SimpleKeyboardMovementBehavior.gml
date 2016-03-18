@@ -21,7 +21,7 @@ if (argument_count == 4 && argument[3] == true) {
     keyDown = ord("s");
     keyLeft = ord("a");
     keyRight = ord("d");
-} else if (argument_count == 6) {
+} else if (argument_count == 7) {
     keyUp = argument[3];
     keyDown = argument[4];
     keyLeft = argument[5];
