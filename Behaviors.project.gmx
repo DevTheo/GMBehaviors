@@ -14,15 +14,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="behaviors">
-      <scripts name="GotoRoomOnClickBehavior">
-        <script>scripts\GotoRoomOnClickBehavior.gml</script>
-        <script>scripts\scr_GotoRoomOnClickBehavior_click.gml</script>
-      </scripts>
       <script>scripts\scr_create_behavior_base.gml</script>
-      <scripts name="SimpleKeyboardMovementBehavior">
-        <script>scripts\SimpleKeyboardMovementBehavior.gml</script>
-        <script>scripts\scr_SimpleKeyboardMovementBehavior_step.gml</script>
-      </scripts>
       <scripts name="Properties">
         <script>scripts\scr_BehaviorProp_UpKey.gml</script>
         <script>scripts\scr_BehaviorProp_Room.gml</script>
@@ -36,6 +28,18 @@
         <script>scripts\scr_BehaviorProp_ConstrainH.gml</script>
         <script>scripts\scr_BehaviorProp_ConstrainW.gml</script>
         <script>scripts\scr_behavior_property.gml</script>
+      </scripts>
+      <scripts name="SimpleKeyboardMovementBehavior">
+        <script>scripts\SimpleKeyboardMovementBehavior.gml</script>
+        <script>scripts\scr_SimpleKeyboardMovementBehavior_step.gml</script>
+      </scripts>
+      <scripts name="GotoRoomOnClickBehavior">
+        <script>scripts\GotoRoomOnClickBehavior.gml</script>
+        <script>scripts\scr_GotoRoomOnClickBehavior_click.gml</script>
+      </scripts>
+      <scripts name="SimpleMovableBehavior">
+        <script>scripts\SimpleMovableBehavior.gml</script>
+        <script>scripts\scr_SimpleMovableBehavior_step.gml</script>
       </scripts>
     </scripts>
   </scripts>
