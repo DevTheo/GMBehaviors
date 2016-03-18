@@ -15,12 +15,12 @@
   <scripts name="scripts">
     <scripts name="behaviors">
       <scripts name="GotoRoomOnClickBehavior">
-        <script>scripts\scr_create_GotoRoomOnClickBehavior.gml</script>
+        <script>scripts\GotoRoomOnClickBehavior.gml</script>
         <script>scripts\scr_GotoRoomOnClickBehavior_click.gml</script>
       </scripts>
       <script>scripts\scr_create_behavior_base.gml</script>
       <scripts name="SimpleKeyboardMovementBehavior">
-        <script>scripts\scr_create_SimpleKeyboardMovementBehavior.gml</script>
+        <script>scripts\SimpleKeyboardMovementBehavior.gml</script>
         <script>scripts\scr_SimpleKeyboardMovementBehavior_step.gml</script>
       </scripts>
     </scripts>
