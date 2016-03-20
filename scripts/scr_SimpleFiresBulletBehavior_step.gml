@@ -25,7 +25,8 @@ if (canFire == false) {
         if (joystickButton > 0) {
             joyButtonDown = joystick_check_button(joystick, joystickutton);
         } else {
-            for(var i=1; i<=32; i++) {
+            var buttonCount = joystick_buttons(joystick);
+            for(var i=1; i<=buttonCount; i++) {
                 joyButtonDown = joystick_check_button(joystick, i);
                 if (joyButtonDown) {
                     break;
