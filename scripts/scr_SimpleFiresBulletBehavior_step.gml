@@ -14,8 +14,8 @@ var joystickButton = scr_BehaviorProp_Button(obj);
 
 var canFire = fireAvailableIn == 0;
 
-if (!canFire) {
-    scr_BehaviorProp_Timeout(obj, fireAvailableIn - 1);
+if (canFire == false) {
+    script_execute(scr_BehaviorProp_Timeout, obj, fireAvailableIn - 1);
     
 } else {    
     // we can fire
@@ -35,10 +35,10 @@ if (!canFire) {
     }
     
     if (joyButtonDown || keyboard_check(key)) {
-        scr_BehaviorProp_Timeout(obj, firespeed);
-        var x = target.x + relativeX;
-        var y = target.y + relativeY;
-        var bullet = instance_create(x,y,bulletObj);
+        script_execute(scr_BehaviorProp_Timeout, obj, firespeed);
+        var newX = target.x + relativeX;
+        var newY = target.y + relativeY;
+        var bullet = instance_create(newX,newY,bulletObj);
         bullet.speed = bulletSpeed;
         bullet.direction = bulletDir;
     }
