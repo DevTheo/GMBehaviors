@@ -39,7 +39,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>GotoRoomOnClickBehavior(self, rm_shooter);
+            <string>GotoRoomOnClickBehavior(self.id, rm_shooter);
 </string>
           </argument>
         </arguments>
