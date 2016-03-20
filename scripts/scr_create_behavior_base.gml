@@ -8,4 +8,8 @@ obj[? "events"] = events;
 
 obj[? "prop_Target"] = scr_BehaviorProp_Target;
 
+if (!is_undefined(argument0.behaviors)) {
+    ds_list_add(argument0.behaviors, obj);
+}
+
 return obj;

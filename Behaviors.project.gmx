@@ -9,6 +9,7 @@
     <sprite>sprites\spr_mnu_shooter</sprite>
     <sprite>sprites\spr_bullet</sprite>
     <sprite>sprites\spr_player</sprite>
+    <sprite>sprites\spr_Enemy</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -58,6 +59,10 @@
         <script>scripts\scr_SimpleFiresBulletBehavior_step.gml</script>
         <script>scripts\SimpleFiresBulletBehavior.gml</script>
       </scripts>
+      <scripts name="ObjectRandomXYGenerator">
+        <script>scripts\scr_ObjectRandomXYGenerator_step.gml</script>
+        <script>scripts\ObjectRandomXYGenerator.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -67,6 +72,8 @@
     <object>objects\obj_mnu_shooter</object>
     <object>objects\obj_player</object>
     <object>objects\obj_bullet</object>
+    <object>objects\obj_Enemy</object>
+    <object>objects\obj_EnemyMaker</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>

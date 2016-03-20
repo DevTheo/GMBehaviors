@@ -10,10 +10,6 @@ events[? "leftbutton"] = scr_GotoRoomOnClickBehavior_click;
 
 obj[? "events"] = events;
 
-if (!is_undefined(argument0.behaviors)) {
-    ds_list_add(argument0.behaviors, obj);
-}
-
 obj[? "prop_Room"] = scr_BehaviorProp_Room;
 
 return obj;

@@ -64,8 +64,4 @@ events[? "step"] = scr_SimpleMovableBehavior_step;
 
 obj[? "events"] = events;
 
-if (!is_undefined(argument0.behaviors)) {
-    ds_list_add(argument0.behaviors, obj);
-}
-
 return obj;
