@@ -7,7 +7,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_mnu_shooter</sprite>
-    <sprite>sprites\sprite1</sprite>
+    <sprite>sprites\spr_bullet</sprite>
     <sprite>sprites\spr_player</sprite>
   </sprites>
   <backgrounds name="background"/>
@@ -28,6 +28,18 @@
         <script>scripts\scr_BehaviorProp_ConstrainH.gml</script>
         <script>scripts\scr_BehaviorProp_ConstrainW.gml</script>
         <script>scripts\scr_behavior_property.gml</script>
+        <script>scripts\scr_BehaviorProp_Target.gml</script>
+        <script>scripts\scr_BehaviorProp_Target2.gml</script>
+        <script>scripts\scr_BehaviorProp_RelativeX.gml</script>
+        <script>scripts\scr_BehaviorProp_RelativeY.gml</script>
+        <script>scripts\scr_BehaviorProp_BulletDir.gml</script>
+        <script>scripts\scr_BehaviorProp_Speed.gml</script>
+        <script>scripts\scr_BehaviorProp_Speed2.gml</script>
+        <script>scripts\scr_BehaviorProp_Joystick.gml</script>
+        <script>scripts\scr_BehaviorProp_Button.gml</script>
+        <script>scripts\scr_BehaviorProp_Key.gml</script>
+        <script>scripts\scr_BehaviorProp_Timeout.gml</script>
+        <script>scripts\scr_BehaviorProp_Sound.gml</script>
       </scripts>
       <scripts name="SimpleKeyboardMovementBehavior">
         <script>scripts\SimpleKeyboardMovementBehavior.gml</script>
@@ -41,6 +53,10 @@
         <script>scripts\SimpleMovableBehavior.gml</script>
         <script>scripts\scr_SimpleMovableBehavior_step.gml</script>
       </scripts>
+      <scripts name="SimpleBulletBehavior">
+        <script>scripts\&lt;undefined&gt;.gml</script>
+        <script>scripts\&lt;undefined&gt;.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -49,6 +65,7 @@
     </objects>
     <object>objects\obj_mnu_shooter</object>
     <object>objects\obj_player</object>
+    <object>objects\obj_bullet</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>
