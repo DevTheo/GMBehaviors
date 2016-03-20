@@ -55,8 +55,8 @@
         <script>scripts\scr_SimpleMovableBehavior_step.gml</script>
       </scripts>
       <scripts name="SimpleBulletBehavior">
-        <script>scripts\&lt;undefined&gt;.gml</script>
-        <script>scripts\&lt;undefined&gt;.gml</script>
+        <script>scripts\scr_SimpleFiresBulletBehavior_step.gml</script>
+        <script>scripts\SimpleFiresBulletBehavior.gml</script>
       </scripts>
     </scripts>
   </scripts>
