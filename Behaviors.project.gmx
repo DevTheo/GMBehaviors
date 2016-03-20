@@ -27,6 +27,7 @@
         <script>scripts\scr_BehaviorProp_ConstrainY.gml</script>
         <script>scripts\scr_BehaviorProp_ConstrainH.gml</script>
         <script>scripts\scr_BehaviorProp_ConstrainW.gml</script>
+        <script>scripts\scr_BehaviorProp_JoystickNumber.gml</script>
         <script>scripts\scr_behavior_property.gml</script>
         <script>scripts\scr_BehaviorProp_Target.gml</script>
         <script>scripts\scr_BehaviorProp_Target2.gml</script>

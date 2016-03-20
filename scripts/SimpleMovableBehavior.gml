@@ -3,10 +3,15 @@ var obj = scr_create_behavior_base(argument0);
 
 obj[? "speed"] = argument1;
 
+var joystickNumber = 0;
+if (argument_count > 2) {
+    joystickNumber = argument[2]; //list of 2 items
+}
+
 var constrain = true;
 
-if (argument_count > 2) {
-    constrain = argument[2];
+if (argument_count > 3) {
+    constrain = argument[3];
 }
 
 obj[? "constrain"] = constrain;
@@ -16,17 +21,19 @@ var keyDown = vk_down;
 var keyLeft = vk_left;
 var keyRight = vk_right;
 
-if (argument_count == 4 && argument[3] == true) {
+if (argument_count == 5 && argument[4] == true) {
     keyUp = ord("w");
     keyDown = ord("s");
     keyLeft = ord("a");
     keyRight = ord("d");
-} else if (argument_count == 6) {
-    keyUp = argument[3];
-    keyDown = argument[4];
-    keyLeft = argument[5];
-    keyRight = argument[6];
+} else if (argument_count == 8) {
+    keyUp = argument[4];
+    keyDown = argument[5];
+    keyLeft = argument[6];
+    keyRight = argument[7];
 }
+
+obj[? "joystickNumber"] = joystickNumber;
 
 obj[? "keyUp"] = keyUp;
 obj[? "keyDown"] = keyDown;
@@ -48,6 +55,7 @@ obj[? "prop_ConstrainX"] = scr_BehaviorProp_ConstrainX;
 obj[? "prop_ConstrainY"] = scr_BehaviorProp_ConstrainY;
 obj[? "prop_ConstrainHeight"] = scr_BehaviorProp_ConstrainH;
 obj[? "prop_ConstrainWidth"] = scr_BehaviorProp_ConstrainW;
+obj[? "prop_JoystickNumber"] = scr_BehaviorProp_JoystickNumber;
 
 var events = obj[? "events"];
 
