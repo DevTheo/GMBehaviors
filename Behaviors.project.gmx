@@ -55,9 +55,9 @@
         <script>scripts\SimpleMovableBehavior.gml</script>
         <script>scripts\scr_SimpleMovableBehavior_step.gml</script>
       </scripts>
-      <scripts name="SimpleBulletBehavior">
-        <script>scripts\scr_SimpleFiresBulletBehavior_step.gml</script>
-        <script>scripts\SimpleFiresBulletBehavior.gml</script>
+      <scripts name="CreateOnButtonClickBehavior">
+        <script>scripts\scr_CreateOnButtonClickBehavior_step.gml</script>
+        <script>scripts\CreateOnButtonClickBehavior.gml</script>
       </scripts>
       <scripts name="ObjectRandomXYGenerator">
         <script>scripts\scr_ObjectRandomXYGenerator_step.gml</script>
