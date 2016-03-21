@@ -39,8 +39,11 @@ if (canFire == false) {
         script_execute(scr_BehaviorProp_Timeout, obj, firespeed);
         var newX = target.x + relativeX;
         var newY = target.y + relativeY;
-        var bullet = instance_create(newX,newY,bulletObj);
-        bullet.speed = bulletSpeed;
-        bullet.direction = bulletDir;
+        
+        if (place_free(newX, newY)) {    
+            var newObj = instance_create(newX,newY,bulletObj);
+            newObj.speed = bulletSpeed;
+            newObj.direction = bulletDir;
+        }
     }
 }

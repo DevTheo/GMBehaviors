@@ -37,7 +37,7 @@ obj[? "prop_Reload"] = scr_BehaviorProp_Timeout;
 var events = obj[? "events"];
 
 ds_list_add(events[? "keys"], "step");
-events[? "step"] = scr_SimpleFiresBulletBehavior_step;
+events[? "step"] = scr_CreateObjectOnButtonClick_step;
 
 obj[? "events"] = events;
 

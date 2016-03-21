@@ -23,18 +23,25 @@ if(joystickNum > -1 && joystick_exists(joystickNum)) {
 
 var spriteH = target.sprite_height - target.sprite_yoffset;
 var spriteW = target.sprite_width - target.sprite_xoffset;
+var newX = target.x;
+var newY = target.y;
 
 if ((joyStickY > 0 || keyboard_check(keyDown)) && 
-    (!constrain || (target.y + spriteH) + mv_speed <  constrainY2)) {
-    target.y += mv_speed;
+    (!constrain || (newY + spriteH) + mv_speed <  constrainY2)) {
+    newY += mv_speed;
 } else if ((joyStickY < 0 || keyboard_check(keyUp)) && 
-           (!constrain || (target.y - target.sprite_yoffset) - mv_speed > constrainY)) {
-    target.y -= mv_speed;
+           (!constrain || (newY - target.sprite_yoffset) - mv_speed > constrainY)) {
+    newY -= mv_speed;
 }
 
 if ((joyStickX > 0 || keyboard_check(keyRight)) && 
-    (!constrain || (target.x + spriteW) + mv_speed < constrainX2)) {
-    target.x += mv_speed;
-} else if ((joyStickX < 0 || keyboard_check(keyLeft)) && (!constrain || (target.x - target.sprite_xoffset) - mv_speed > constrainX)) {
-    target.x -= mv_speed;
+    (!constrain || (newX + spriteW) + mv_speed < constrainX2)) {
+    newX += mv_speed;
+} else if ((joyStickX < 0 || keyboard_check(keyLeft)) && (!constrain || (newX - target.sprite_xoffset) - mv_speed > constrainX)) {
+    newX -= mv_speed;
+}
+
+if (place_free(newX, newY)) {
+    target.x = newX;
+    target.y = newY;
 }

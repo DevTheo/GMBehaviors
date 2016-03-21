@@ -59,7 +59,7 @@ script_execute(SimpleMovableBehavior, self.id, 5, joystickNum);
 // (optional) joystick number 
 // (optional) button number (-1 with joystick num defined means any button)
 // (optional) sound to play on fire (-1 means no sound)
-script_execute(SimpleFiresBulletBehavior, self.id, obj_bullet, 8, 0, 17, 90, 6, vk_space, joystickNum, -1, snd_bullet);
+script_execute(CreateObjectOnButtonClick, self.id, obj_bullet, 8, 0, 17, 90, 6, vk_space, joystickNum, -1, snd_bullet);
 </string>
           </argument>
         </arguments>
