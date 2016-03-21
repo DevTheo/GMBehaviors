@@ -23,7 +23,7 @@ if (canFire == false) {
     
     if (joystick > 0) {
         if (joystickButton > 0) {
-            joyButtonDown = joystick_check_button(joystick, joystickutton);
+            joyButtonDown = joystick_check_button(joystick, joystickButton);
         } else {
             var buttonCount = joystick_buttons(joystick);
             for(var i=1; i<=buttonCount; i++) {
