@@ -5,46 +5,55 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound">
-    <sound>sound\snd_bullet</sound>
-    <sound>sound\snd_enemyCreate</sound>
+    <sounds name="Shooter">
+      <sound>sound\snd_bullet</sound>
+      <sound>sound\snd_enemyCreate</sound>
+    </sounds>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\spr_mnu_shooter</sprite>
-    <sprite>sprites\spr_bullet</sprite>
-    <sprite>sprites\spr_player</sprite>
-    <sprite>sprites\spr_Enemy</sprite>
+    <sprites name="Menus">
+      <sprite>sprites\spr_mnu_shooter</sprite>
+      <sprite>sprites\spr_mnu_platformer</sprite>
+    </sprites>
+    <sprites name="Shooter">
+      <sprite>sprites\spr_bullet</sprite>
+      <sprite>sprites\spr_Enemy</sprite>
+      <sprite>sprites\spr_player</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="behaviors">
       <script>scripts\scr_create_behavior_base.gml</script>
+      <script>scripts\scr_create_behavior_with_json_string_params.gml</script>
       <scripts name="Properties">
-        <script>scripts\scr_BehaviorProp_UpKey.gml</script>
-        <script>scripts\scr_BehaviorProp_Room.gml</script>
-        <script>scripts\scr_BehaviorProp_DownKey.gml</script>
-        <script>scripts\scr_BehaviorProp_LeftKey.gml</script>
-        <script>scripts\scr_BehaviorProp_RightKey.gml</script>
-        <script>scripts\scr_BehaviorProp_MoveSpeed.gml</script>
+        <script>scripts\scr_behavior_property.gml</script>
+        <script>scripts\scr_BehaviorProp_BulletDir.gml</script>
+        <script>scripts\scr_BehaviorProp_Button.gml</script>
         <script>scripts\scr_BehaviorProp_Constrain.gml</script>
-        <script>scripts\scr_BehaviorProp_ConstrainX.gml</script>
-        <script>scripts\scr_BehaviorProp_ConstrainY.gml</script>
         <script>scripts\scr_BehaviorProp_ConstrainH.gml</script>
         <script>scripts\scr_BehaviorProp_ConstrainW.gml</script>
+        <script>scripts\scr_BehaviorProp_ConstrainX.gml</script>
+        <script>scripts\scr_BehaviorProp_ConstrainY.gml</script>
+        <script>scripts\scr_BehaviorProp_DownKey.gml</script>
+        <script>scripts\scr_BehaviorProp_Joystick.gml</script>
         <script>scripts\scr_BehaviorProp_JoystickNumber.gml</script>
-        <script>scripts\scr_behavior_property.gml</script>
-        <script>scripts\scr_BehaviorProp_Target.gml</script>
-        <script>scripts\scr_BehaviorProp_Target2.gml</script>
+        <script>scripts\scr_BehaviorProp_JumpKey.gml</script>
+        <script>scripts\scr_BehaviorProp_Key.gml</script>
+        <script>scripts\scr_BehaviorProp_LeftKey.gml</script>
+        <script>scripts\scr_BehaviorProp_MoveSpeed.gml</script>
         <script>scripts\scr_BehaviorProp_RelativeX.gml</script>
         <script>scripts\scr_BehaviorProp_RelativeY.gml</script>
-        <script>scripts\scr_BehaviorProp_BulletDir.gml</script>
+        <script>scripts\scr_BehaviorProp_RightKey.gml</script>
+        <script>scripts\scr_BehaviorProp_Room.gml</script>
+        <script>scripts\scr_BehaviorProp_Sound.gml</script>
         <script>scripts\scr_BehaviorProp_Speed.gml</script>
         <script>scripts\scr_BehaviorProp_Speed2.gml</script>
-        <script>scripts\scr_BehaviorProp_Joystick.gml</script>
-        <script>scripts\scr_BehaviorProp_Button.gml</script>
-        <script>scripts\scr_BehaviorProp_Key.gml</script>
+        <script>scripts\scr_BehaviorProp_Target.gml</script>
+        <script>scripts\scr_BehaviorProp_Target2.gml</script>
         <script>scripts\scr_BehaviorProp_Timeout.gml</script>
-        <script>scripts\scr_BehaviorProp_Sound.gml</script>
+        <script>scripts\scr_BehaviorProp_UpKey.gml</script>
       </scripts>
       <scripts name="SimpleKeyboardMovementBehavior">
         <script>scripts\SimpleKeyboardMovementBehavior.gml</script>
@@ -66,21 +75,31 @@
         <script>scripts\scr_ObjectRandomXYGenerator_step.gml</script>
         <script>scripts\ObjectRandomXYGenerator.gml</script>
       </scripts>
+      <scripts name="PlatformMoveBehavior">
+        <script>scripts\PlatformMoveBehavior.gml</script>
+        <script>scripts\scr_PlatformMoveBehavior_step.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <objects name="objects">
     <objects name="behavior_lib">
       <object>objects\obj_behavior_controller</object>
     </objects>
-    <object>objects\obj_mnu_shooter</object>
-    <object>objects\obj_player</object>
-    <object>objects\obj_bullet</object>
-    <object>objects\obj_Enemy</object>
-    <object>objects\obj_EnemyMaker</object>
+    <objects name="Menus">
+      <object>objects\obj_mnu_shooter</object>
+      <object>objects\obj_mnu_platformer</object>
+    </objects>
+    <objects name="Shooter">
+      <object>objects\obj_bullet</object>
+      <object>objects\obj_Enemy</object>
+      <object>objects\obj_EnemyMaker</object>
+      <object>objects\obj_player</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_menu</room>
     <room>rooms\rm_shooter</room>
+    <room>rooms\rm_platformer</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
