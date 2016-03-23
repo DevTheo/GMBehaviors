@@ -79,6 +79,14 @@
         <script>scripts\PlatformMoveBehavior.gml</script>
         <script>scripts\scr_PlatformMoveBehavior_step.gml</script>
       </scripts>
+      <scripts name="MultipleSpritesBehavior">
+        <script>scripts\MultipleSpritesBehavior.gml</script>
+        <script>scripts\scr_MultipleSpritesBehavior_GetSprite.gml</script>
+      </scripts>
+      <scripts name="MovementDetectionBehavior">
+        <script>scripts\MovementDetectionBehavior.gml</script>
+        <script>scripts\scr_MovementDetectionBehavior_GetMovement.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <objects name="objects">
