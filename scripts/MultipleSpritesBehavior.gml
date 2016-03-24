@@ -25,7 +25,7 @@ if(!is_string(argument0))
     argument0 = "{ 'target': " + string(argument0.id) + "'default': " + string(argument0.sprite_index) + "}";
 }
 
-var obj = scr_create_behavior_with_json_string_params(argument1);
+var obj = scr_create_behavior_with_json_string_params(argument0, "MultipleSpritesBehavior");
 
 // one action
 obj[? "_GetSprite"] = scr_MultipleSpritesBehavior_GetSprite;

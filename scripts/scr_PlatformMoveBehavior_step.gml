@@ -6,7 +6,8 @@ var button = scr_BehaviorProp_Button(obj);
 var keyJump = scr_BehaviorProp_JumpKey(obj);
 var ladderBlocks = scr_BehaviorProp_Target2(obj);
 var timeout = scr_BehaviorProp_Timeout(obj);
-var hasSprites = false;
+var gravityInc = obj[? "gravity"];
+var jumpStrength = obj[? "jumpStrength"];
 
 var multiSpritesBehavior = MultipleSpritesBehavior(target);
 var getSprite = multiSpritesBehavior[? "_GetSprite"]
@@ -17,7 +18,6 @@ var spriteRight = script_execute(getSprite, "right");
 //var spriteDown = script_execute(getSprite, "down");
 var spriteJumpLeft = script_execute(getSprite, "jumpLeft");
 var spriteJumpRight = script_execute(getSprite, "jumpRight");
-var grav = obj[? "gravity"];
 
 var movementObj = MovementDetectionBehavior(target);
 var movement = script_execute(movementObj[? "GetMovement"], movementObj);
@@ -41,9 +41,76 @@ mvRight = movement[? "right"];
 mvJump = joyJump || keyboard_check(ord(keyJump));
 
 // Now we can actually make changes
-var offsetX = target.sprite_get_xoffset(target.sprite_index)); // ??
-var offsetY = target.sprite_get_yoffset(target.sprite_index)); // ??
-var bottom = target.y + (target.sprite_height - offsetY));
-var left = target.x -  (target.sprite_height - offsetX));
-var right = target.x + (target.sprite_height - offsetX);
-var canJump = freePlace(
+var offsetX = target.sprite_get_xoffset(target.sprite_index); // ??
+var offsetY = target.sprite_get_yoffset(target.sprite_index); // ??
+var spriteBottom = target.y + (target.sprite_height - offsetY));
+var spriteLeft = target.x -  (target.sprite_height - offsetX));
+var spriteRight = target.x + (target.sprite_height - offsetX);
+
+var wallOnLeft = !place_free(spriteLeft - 1, offsetY);
+var wallOnRight = !place_free(spriteRight + 1, offsetY);
+var onGround = !place_free(offsetX, spriteBottom + 1); // TODO: Add detection for ladders
+var wallJump = wallOnLeft || wallOnRight; 
+var canJump = wallJump || onGround;
+              
+var canDoubleJump = obj[? "CanDblJump"];
+if (!place_free(offsetX, spriteBottom + 1)) {
+    canDoubleJump = true;
+}
+
+if (mvJump && canJump || canDoubleJump) {
+    if(!(mvJump && canJump)) {
+        canDoubleJump = false;
+    }
+    mvJump = true;
+} else {
+    mvJump = false;
+}
+
+
+
+// Tutorial Step code...
+if (!onGround) {
+    target.gravity = gravityInc;
+    target.gravity_direction = 270;
+} else {
+    target.gravity = 0;
+    target.gravity_direction = 270;    
+}
+if (target.vspeed > 12) {
+    target.vspeed = 12;
+}
+
+if (mvJump) {
+    target.vspeed = -10;
+}
+
+if (mvLeft) {
+    if((!onGround || mvJump) && target.sprite_index != spriteJumpLeft) {
+        target.sprite_index = spriteJumpLeft;
+        target.image_index = 0;
+    } else if (target.sprite_index != spriteLeft) {
+        target.sprite_index = spriteLeft;
+        target.image_index = 0;
+    }
+    if( !wallOnLeft) {
+        target.x -= moveSpeed;
+    }
+}
+
+if (mvRight) {
+    if((!onGround || mvJump) && target.sprite_index != spriteJumpRight) {
+        target.sprite_index = spriteJumpRight;
+        target.image_index = 0;
+    } else if (target.sprite_index != spriteRight) {
+        target.sprite_index = spriteRight;
+        target.image_index = 0;
+    }
+    
+    if(!wallOnRight) {
+        target.x += moveSpeed;
+    }
+}
+
+
+canDoubleJump = obj[? "CanDblJump"];

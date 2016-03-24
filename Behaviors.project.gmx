@@ -68,12 +68,12 @@
         <script>scripts\scr_SimpleMovableBehavior_step.gml</script>
       </scripts>
       <scripts name="CreateObjectOnButtonClick">
-        <script>scripts\scr_CreateObjectOnButtonClick_step.gml</script>
         <script>scripts\CreateObjectOnButtonClick.gml</script>
+        <script>scripts\scr_CreateObjectOnButtonClick_step.gml</script>
       </scripts>
       <scripts name="ObjectRandomXYGenerator">
-        <script>scripts\scr_ObjectRandomXYGenerator_step.gml</script>
         <script>scripts\ObjectRandomXYGenerator.gml</script>
+        <script>scripts\scr_ObjectRandomXYGenerator_step.gml</script>
       </scripts>
       <scripts name="PlatformMoveBehavior">
         <script>scripts\PlatformMoveBehavior.gml</script>

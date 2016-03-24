@@ -1,5 +1,5 @@
 /// Setup behavior
-var obj = scr_create_behavior_base(argument0);
+var obj = scr_create_behavior_base(argument0, "SimpleKeyboardMovementBehavior");
 
 obj[? "speed"] = argument1;
 

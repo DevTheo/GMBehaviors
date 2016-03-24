@@ -13,4 +13,5 @@ if(ds_map_exists(obj, "target")) {
     }
 }
 
+obj[? "BehaviorName"] = argument1;
 return obj;

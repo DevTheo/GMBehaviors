@@ -28,7 +28,8 @@ if (!is_string(argument0)) {
 }
 
 
-var obj = scr_create_behavior_with_json_string_params(argument0);
+var obj = scr_create_behavior_with_json_string_params(argument0, "MovementDetectionBehavior");
+
 var target = obj[? "target"];
 
 var alt = false;

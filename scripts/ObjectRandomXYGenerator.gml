@@ -1,5 +1,5 @@
 /// Setup behavior
-var obj = scr_create_behavior_base(argument0);
+var obj = scr_create_behavior_base(argument0, "ObjectRandomXYGenerator");
 
 script_execute(scr_BehaviorProp_Target2, obj, argument1);
 script_execute(scr_BehaviorProp_Speed, obj, argument2);

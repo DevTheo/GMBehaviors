@@ -19,12 +19,12 @@ var joystickNum = obj[? "joystickNumber"];
 var joyStickX = 0;
 var joyStickY = 0;
 if(joystickNum > -1 && gamepad_is_supported() && gamepad_is_connected(joystickNum)) {
-    if(ds_map_exists(obj, "joystickXAxes") {
+    if(ds_map_exists(obj, "joystickXAxes")) {
         joyStickX = round(gamepad_axis_value(joystickNum, obj[? "joystickXAxes"])); 
     } else {
         joyStickX = round(gamepad_axis_value(joystickNum, gp_axislh)); 
     }
-    if(ds_map_exists(obj, "joystickYAxes") {
+    if(ds_map_exists(obj, "joystickYAxes")) {
         joyStickY = round(gamepad_axis_value(joystickNum, obj[? "joystickYAxes"])); 
     } else {
         joyStickY = round(gamepad_axis_value(joystickNum, gp_axislv)); 

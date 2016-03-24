@@ -12,4 +12,5 @@ if (!is_undefined(argument0.behaviors)) {
     ds_list_add(argument0.behaviors, obj);
 }
 
+obj[? "BehaviorName"] = argument1;
 return obj;

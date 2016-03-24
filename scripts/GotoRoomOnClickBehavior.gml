@@ -1,5 +1,5 @@
 /// Setup behavior
-var obj = scr_create_behavior_base(argument0);
+var obj = scr_create_behavior_base(argument0, "GotoRoomOnClickBehavior");
 
 obj[? "room"] = argument1;
 
