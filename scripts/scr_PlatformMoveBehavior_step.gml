@@ -8,14 +8,19 @@ var ladderBlocks = scr_BehaviorProp_Target2(obj);
 var timeout = scr_BehaviorProp_Timeout(obj);
 var gravityInc = obj[? "gravity"];
 var jumpStrength = obj[? "jumpStrength"];
+var ladderBlocks = -1;
+
+if(ds_map_exists(obj, "ladderBlocks")) {
+    ladderBlocks = obj[? "ladderBlocks"];
+}
 
 var multiSpritesBehavior = MultipleSpritesBehavior(target);
 var getSprite = multiSpritesBehavior[? "_GetSprite"]
 
 var spriteLeft = script_execute(getSprite, "left");
 var spriteRight = script_execute(getSprite, "right");
-//var spriteUp = script_execute(getSprite, "up");
-//var spriteDown = script_execute(getSprite, "down");
+var spriteUp = script_execute(getSprite, "up");
+var spriteDown = script_execute(getSprite, "down");
 var spriteJumpLeft = script_execute(getSprite, "jumpLeft");
 var spriteJumpRight = script_execute(getSprite, "jumpRight");
 
@@ -41,12 +46,29 @@ mvRight = movement[? "right"];
 mvJump = joyJump || keyboard_check(ord(keyJump));
 
 // Now we can actually make changes
-var offsetX = target.sprite_get_xoffset(target.sprite_index); // ??
-var offsetY = target.sprite_get_yoffset(target.sprite_index); // ??
-var spriteBottom = target.y + (target.sprite_height - offsetY));
-var spriteLeft = target.x -  (target.sprite_height - offsetX));
+var offsetX = sprite_get_xoffset(target.sprite_index); // ??
+var offsetY = sprite_get_yoffset(target.sprite_index); // ??
+var spriteBottom = target.y + (target.sprite_height - offsetY);
+var spriteLeft = target.x -  (target.sprite_height - offsetX);
 var spriteRight = target.x + (target.sprite_height - offsetX);
 
+// detect ladder blocks
+var ladderOnLeft = false;
+var ladderOnRight = false;
+if (ladderBlocks > -1) {
+    var ladderCount = ds_list_size(ladderBlocks);
+    for(var idx=0; idx<ladderCount; idx++) {
+        var block = ds_list_find_value(ladderBlocks, idx);
+        if(!is_undefined(block)) {
+            if(!ladderOnLeft && position_meeting(spriteLeft-1, offsetY, block))
+                ladderOnLeft = true;
+            if(!ladderOnRight && position_meeting(spriteRight+1, offsetY, block))
+                ladderOnRight = true;
+            if(ladderOnLeft && ladderOnRight)
+                break; // no need to continue
+        }
+    }
+}
 var wallOnLeft = !place_free(spriteLeft - 1, offsetY);
 var wallOnRight = !place_free(spriteRight + 1, offsetY);
 var onGround = !place_free(offsetX, spriteBottom + 1); // TODO: Add detection for ladders
@@ -67,8 +89,6 @@ if (mvJump && canJump || canDoubleJump) {
     mvJump = false;
 }
 
-
-
 // Tutorial Step code...
 if (!onGround) {
     target.gravity = gravityInc;
@@ -81,10 +101,12 @@ if (target.vspeed > 12) {
     target.vspeed = 12;
 }
 
+// Tutorial Jump key code...
 if (mvJump) {
     target.vspeed = -10;
 }
 
+// Tutorial left key code...
 if (mvLeft) {
     if((!onGround || mvJump) && target.sprite_index != spriteJumpLeft) {
         target.sprite_index = spriteJumpLeft;
@@ -98,6 +120,7 @@ if (mvLeft) {
     }
 }
 
+// Tutorial right key code...
 if (mvRight) {
     if((!onGround || mvJump) && target.sprite_index != spriteJumpRight) {
         target.sprite_index = spriteJumpRight;
@@ -113,4 +136,4 @@ if (mvRight) {
 }
 
 
-canDoubleJump = obj[? "CanDblJump"];
+obj[? "CanDblJump"] = canDoubleJump ;

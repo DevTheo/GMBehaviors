@@ -21,8 +21,9 @@ argument0 is either a target.id or a json string in this format:
 */
 
 if (!is_string(argument0)) {
-    if(!is_undefined(target._MovementDetection_)) {
-        return argument0._MovementDetection_;
+    var bh = scr_create_behavior_with_json_string_params(argument0, "MovementDetectionBehavior");
+    if(!is_undefined(bh)) {
+        return bh;
     } 
     argument0 = "{}"
 }
@@ -66,8 +67,6 @@ if(ds_map_exists(obj, "joystickNumber")) {
         obj[? "joystickYAxes"] = -1;
 }
 
-obj[? "GetMovement"] = scr_MovementDetectionBehavior_GetValues
-
-target._MovementDetection_ = obj;
+obj[? "GetMovement"] = scr_MovementDetectionBehavior_GetMovement;
 
 return obj;

@@ -4,9 +4,6 @@ var obj = scr_create_behavior_base(argument0, "SimpleMovableBehavior");
 obj[? "speed"] = argument1;
 
 var joystickNumber = 0;
-if (argument_count > 2) {
-    joystickNumber = argument[2]; //list of 2 items
-}
 
 var constrain = true;
 

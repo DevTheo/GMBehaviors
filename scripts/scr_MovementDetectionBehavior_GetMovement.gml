@@ -8,7 +8,7 @@ returns a DSMAP in this shape
 }
 */
 var obj = argument0;
-var target = obj.target;
+var target = obj[? "target"];
 
 var up = false;
 var down = false;
@@ -16,20 +16,26 @@ var left = false;
 var right = false;
 
 var joystickNum = obj[? "joystickNumber"];
-var joyStickX = 0;
-var joyStickY = 0;
+var joystickX = 0;
+var joystickY = 0;
 if(joystickNum > -1 && gamepad_is_supported() && gamepad_is_connected(joystickNum)) {
     if(ds_map_exists(obj, "joystickXAxes")) {
-        joyStickX = round(gamepad_axis_value(joystickNum, obj[? "joystickXAxes"])); 
+        joystickX = round(gamepad_axis_value(joystickNum, obj[? "joystickXAxes"])); 
     } else {
-        joyStickX = round(gamepad_axis_value(joystickNum, gp_axislh)); 
+        joystickX = round(gamepad_axis_value(joystickNum, gp_axislh)); 
     }
     if(ds_map_exists(obj, "joystickYAxes")) {
-        joyStickY = round(gamepad_axis_value(joystickNum, obj[? "joystickYAxes"])); 
+        joystickY = round(gamepad_axis_value(joystickNum, obj[? "joystickYAxes"])); 
     } else {
-        joyStickY = round(gamepad_axis_value(joystickNum, gp_axislv)); 
+        joystickY = round(gamepad_axis_value(joystickNum, gp_axislv)); 
     }
 }
+
+var keyUp = obj[? "keyUp"];
+var keyDown = obj[? "keyDown"];
+var keyLeft = obj[? "keyLeft"];
+var keyRight = obj[? "keyRight"];
+
 
 var otherUp = false;
 var otherDown = false;
@@ -58,14 +64,14 @@ if (ds_map_exists(obj, "keyUpDownRight") && keyboard_check(ord(obj[? "keyUpDownR
     otherDown = true;    
 }
 
-if (otherDown || joyStickY > 0 || keyboard_check(keyDown)) { // TODO: add downRight/downLeft
+if (otherDown || joystickY > 0 || keyboard_check(keyDown)) { 
     down= true;
-} else if(otherUp || joyStickY < 0 || keyboard_check(keyUp)) { // TODO: add downRight/downLeft
+} else if(otherUp || joystickY < 0 || keyboard_check(keyUp)) { 
     up = true;
 }
-if (otherRight || joyStickX > 0 || keyboard_check(keyRight)) { // TODO: add upRight/downRight
+if (otherRight || joystickX > 0 || keyboard_check(keyRight)) { 
     right = true;
-} else if (otherLeft || joyStickX < 0 || keyboard_check(keyLeft)) { // TODO: add upLeft/downLeft
+} else if (otherLeft || joystickX < 0 || keyboard_check(keyLeft)) { 
     left = true;
 }
 

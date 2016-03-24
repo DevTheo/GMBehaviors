@@ -14,7 +14,7 @@ params:
 */
 var obj = scr_create_behavior_with_json_string_params(argument0, "PlatformMoveBehavior");
 
-var target = scr_BehaviorProp_Target();
+var target = scr_BehaviorProp_Target(obj);
 
 if(!ds_map_exists(obj, "button"))
     obj[? "button"] = -1;

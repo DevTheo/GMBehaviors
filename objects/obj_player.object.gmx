@@ -40,12 +40,18 @@
           <argument>
             <kind>1</kind>
             <string>var joystickNum = -1; 
-if (joystick_exists(1))
-    joystickNum = 1;
-if (joystickNum == -1 &amp;&amp; joystick_exists(2))
-    joystickNum = 2;
 
-script_execute(SimpleMovableBehavior, self.id, 5, joystickNum);
+for(var joyNum=1; joyNum&lt;=4; joyNum++) {
+    if (joystickNum == -1 &amp;&amp; gamepad_is_connected(joyNum)) {
+        joystickNum = joyNum;
+        break;
+    }
+}
+
+MovementDetectionBehavior("{target: " + string(self.id) + 
+                           ", joystickNumber:" + string(joystickNum) + " }");
+    
+SimpleMovableBehavior(self.id, 5);
 // argument list:
 // -------------
 // self
