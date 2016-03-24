@@ -65,7 +65,7 @@ if (ds_map_exists(obj, "keyUpDownRight") && keyboard_check(ord(obj[? "keyUpDownR
 }
 
 if (otherDown || joystickY > 0 || keyboard_check(keyDown)) { 
-    down= true;
+    down = true;
 } else if(otherUp || joystickY < 0 || keyboard_check(keyUp)) { 
     up = true;
 }

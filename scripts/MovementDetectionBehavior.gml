@@ -56,7 +56,7 @@ if(!ds_map_exists(obj, "keyLeft"))
 
 if(!ds_map_exists(obj, "keyRight"))
     if(!alt)
-        obj[? "keyRight"] = vk_left;
+        obj[? "keyRight"] = vk_right;
     else
         obj[? "keyRight"] = ord("s");
 

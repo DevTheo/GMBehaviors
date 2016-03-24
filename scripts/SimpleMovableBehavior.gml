@@ -7,16 +7,29 @@ var joystickNumber = 0;
 
 var constrain = true;
 
-if (argument_count > 3) {
-    constrain = argument[3];
+if (argument_count > 2) {
+    constrain = argument[2];
 }
 
+
+var constrainX = 0;
+var constrainY = 0;
+var constrainW = room_width;
+var constrainH = room_height;        
+
+if (argument_count > 5) {
+    constrain = true;
+    constrainX = argument[2];
+    constrainY = argument[3];
+    constrainW = argument[4];
+    constrainH = argument[5];        
+}
 obj[? "constrain"] = constrain;
 
-obj[? "constrainX"] = 0;
-obj[? "constrainY"] = 0;
-obj[? "constrainH"] = room_height;
-obj[? "constrainW"] = room_width;
+obj[? "constrainX"] = constrainX;
+obj[? "constrainY"] = constrainY;
+obj[? "constrainH"] = constrainH;
+obj[? "constrainW"] = constrainW;
 
 obj[? "prop_constrain"] = scr_BehaviorProp_Constrain;
 obj[? "prop_ConstrainX"] = scr_BehaviorProp_ConstrainX;
