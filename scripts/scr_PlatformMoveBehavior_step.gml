@@ -71,7 +71,7 @@ if (ladderBlocks > -1) {
 }
 var wallOnLeft = !place_free(spriteLeft - 1, offsetY);
 var wallOnRight = !place_free(spriteRight + 1, offsetY);
-var onGround = !place_free(offsetX, spriteBottom + 1); // TODO: Add detection for ladders
+var onGround = !place_free(offsetX, spriteBottom + 6); // TODO: Add detection for ladders
 var wallJump = wallOnLeft || wallOnRight; 
 var canJump = wallJump || onGround;
               
@@ -87,6 +87,11 @@ if (mvJump && canJump || canDoubleJump) {
     mvJump = true;
 } else {
     mvJump = false;
+}
+
+// tutorial collide with ground
+if (onGround && target.vspeed > 0) {
+    move_contact_all(270, 12);
 }
 
 // Tutorial Step code...

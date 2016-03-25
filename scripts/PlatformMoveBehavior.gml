@@ -9,7 +9,7 @@ params:
     button: -1, // any
     keyJump: ' ',    
     ladderBlocks: dslist,
-    gravity:1
+    gravity:0.5 // gravity inc
 }
 */
 var obj = scr_create_behavior_with_json_string_params(argument0, "PlatformMoveBehavior");
