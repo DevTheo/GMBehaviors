@@ -92,6 +92,11 @@
         <script>scripts\scr_MovementDetectionBehavior_GetMovement.gml</script>
       </scripts>
     </scripts>
+    <scripts name="KVParmParsing">
+      <script>scripts\scr_ltrim_char.gml</script>
+      <script>scripts\scr_parse_kv_params.gml</script>
+      <script>scripts\scr_rtrim_char.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="behavior_lib">
@@ -105,7 +110,7 @@
       <object>objects\obj_bullet</object>
       <object>objects\obj_Enemy</object>
       <object>objects\obj_EnemyMaker</object>
-      <object>objects\obj_player</object>
+      <object>objects\obj_shoter_player</object>
     </objects>
     <objects name="Platformer">
       <object>objects\obj_block</object>
