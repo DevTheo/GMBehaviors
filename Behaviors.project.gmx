@@ -109,6 +109,7 @@
     </objects>
     <objects name="Platformer">
       <object>objects\obj_block</object>
+      <object>objects\obj_platform_player</object>
     </objects>
   </objects>
   <rooms name="rooms">

@@ -13,6 +13,9 @@ if(!is_string(argument0)) {
 }
 
 var obj = json_decode(argument0);
+if(!is_undefined(obj[? "default"])) {
+    obj = obj[? "default"];
+}
 obj[? "behaviorName"] = argument1;
 
 var events = ds_map_create();

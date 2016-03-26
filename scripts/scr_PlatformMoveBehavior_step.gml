@@ -43,7 +43,10 @@ if (joystickNumber > 0) {
 
 mvLeft = movement[? "left"];
 mvRight = movement[? "right"];
-mvJump = joyJump || keyboard_check(ord(keyJump));
+show_debug_message("mvLeft " + string(mvLeft));
+show_debug_message("mvRight " + string(mvRight));
+
+var mvJump = joyJump || keyboard_check(ord(keyJump));
 
 // Now we can actually make changes
 var offsetX = sprite_get_xoffset(target.sprite_index); // ??

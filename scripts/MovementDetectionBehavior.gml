@@ -30,6 +30,7 @@ if (!is_string(argument0)) {
 
 
 var obj = scr_create_behavior_with_json_string_params(argument0, "MovementDetectionBehavior");
+show_debug_message("MovementDetectionBehavior-json: " + json_encode(obj));
 
 var target = obj[? "target"];
 

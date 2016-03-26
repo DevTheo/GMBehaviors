@@ -36,7 +36,6 @@ var keyDown = obj[? "keyDown"];
 var keyLeft = obj[? "keyLeft"];
 var keyRight = obj[? "keyRight"];
 
-
 var otherUp = false;
 var otherDown = false;
 var otherLeft = false;
