@@ -29,6 +29,11 @@ if(!is_string(arg0))
 
 var obj = scr_create_behavior_with_json_string_params(arg0, "MultipleSpritesBehavior");
 
+if (is_undefined(obj[? "default"])) {
+    var target = obj[? "target"];
+    obj[? "default"] = target.sprite_index;   
+}
+
 // one action
 obj[? "_GetSprite"] = scr_MultipleSpritesBehavior_GetSprite;
 

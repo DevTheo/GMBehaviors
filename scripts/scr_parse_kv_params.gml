@@ -34,7 +34,7 @@ while (commaCount > 0) {
     
     // determine type (string, bool, real) and convert value accordingly
     if(string_char_at(value, 1) == '"' || string_char_at(value, 1) == "'") {
-        value = string_copy(value, 1, string_length(value)-2);
+        value = string_copy(value, 2, string_length(value)-2); // assumes closing quote
     } else if (string_upper(value) == "FALSE") {
         value = false
     } else if (string_upper(value) == "TRUE") {

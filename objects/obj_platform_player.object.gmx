@@ -60,7 +60,7 @@ var platJson =
    "jumpStrength: 10," +
    "button: -1," +
    "keyJump: ' '," +   
-   "gravity:0.5";    //"ladderBlocks: -1," +
+   "gravity: 0.5";    //"ladderBlocks: -1," +
 
 show_debug_message("platJson :" + platJson);
 
