@@ -3,7 +3,7 @@ var obj = argument0;
 var target = scr_BehaviorProp_Target(obj);
 var moveSpeed = scr_BehaviorProp_MoveSpeed(obj);
 var button = scr_BehaviorProp_Button(obj);
-var keyJump = scr_BehaviorProp_JumpKey(obj);
+var keyJump = obj[? "keyJump"];
 var ladderBlocks = scr_BehaviorProp_Target2(obj);
 var timeout = scr_BehaviorProp_Timeout(obj);
 var gravityInc = obj[? "gravity"];
@@ -27,6 +27,7 @@ var spriteJumpRight = script_execute(getSprite, "jumpRight");
 var movementObj = MovementDetectionBehavior(target);
 var movement = script_execute(movementObj[? "GetMovement"], movementObj);
 var joystickNumber = scr_BehaviorProp_JoystickNumber(movementObj);
+var joyJump = false;
 
 if (joystickNumber > 0) {
     if(button > 0) {
@@ -99,8 +100,8 @@ if (onGround && target.vspeed > 0) {
 
 // Tutorial Step code...
 if (!onGround) {
-    target.gravity = gravityInc;
-    target.gravity_direction = 270;
+//    target.gravity_direction = 270;
+//    target.gravity = gravityInc;
 } else {
     target.gravity = 0;
     target.gravity_direction = 270;    
@@ -111,7 +112,7 @@ if (target.vspeed > 12) {
 
 // Tutorial Jump key code...
 if (mvJump) {
-    target.vspeed = -10;
+//    target.vspeed = -10;
 }
 
 // Tutorial left key code...

@@ -21,11 +21,14 @@ while (commaCount > 0) {
     
 // then loop through the array, splitting on ":", triming the key/value
     var colonPlace = string_pos(":", kvp);
-    
-    var key = scr_ltrim_char(scr_rtrim_char(string_copy(kvp, 1, colonPlace - 1), " "), " ");
+    var key = scr_rtrim_char(
+              scr_ltrim_char(
+                string_copy(kvp, 1, colonPlace - 1)
+              , " ")
+              , " ");
     var value = scr_ltrim_char(
                 scr_rtrim_char(
-                        string_copy(kvp, colonPlace + 1, (string_length(kvp) - (colonPlace + 1)))
+                        string_copy(kvp, colonPlace + 1, (string_length(kvp) - colonPlace))
                         , " ")
                         , " ");
     
@@ -37,7 +40,10 @@ while (commaCount > 0) {
     } else if (string_upper(value) == "TRUE") {
         value = true;
     } else {
-        value = real(string_digits(value));
+        var negate = 1;
+        if (string_pos("-", value) > 0) 
+            negate = -1;
+        value = negate * real(string_digits(value));
     }
     
     // finally store value in result
@@ -51,10 +57,12 @@ while (commaCount > 0) {
     
     var kvpStart = 1;
     var commaPlace = string_pos(",", kvString);
+    if(commaPlace == 0)
+        commaPlace = string_length(kvString) + 1;
 }
 
 if (addKeys) {
-    result["keys"] = keysList;
+    result[? "keys"] = keysList;
 }
 
 return result;

@@ -12,11 +12,9 @@ if(!is_string(argument0)) {
     return undefined;
 }
 
-var obj = scr_parse_kv_params(argument0);
-if(!is_undefined(obj[? "default"])) {
-    obj = obj[? "default"];
-}
-obj[? "behaviorName"] = argument1;
+var obj = script_execute(scr_parse_kv_params, argument0);
+var name = argument1;
+obj[? "behaviorName"] = name;
 
 var events = ds_map_create();
 events[? "keys"] = ds_list_create();

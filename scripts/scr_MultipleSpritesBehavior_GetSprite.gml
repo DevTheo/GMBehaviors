@@ -1,5 +1,5 @@
 var target = argument0;
-var obj = target._MultiSpriteBehavior_;
+var obj = MultipleSpritesBehavior(target);
 var defaultSprite = obj[? "default"];
 var key = argument1;
 

@@ -68,6 +68,8 @@ if(ds_map_exists(obj, "joystickNumber")) {
         obj[? "joystickYAxes"] = -1;
 }
 
+global.MovementDetection = ds_map_create();
+
 obj[? "GetMovement"] = scr_MovementDetectionBehavior_GetMovement;
 
 return obj;

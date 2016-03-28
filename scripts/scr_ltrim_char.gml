@@ -7,13 +7,13 @@ if (is_string(str)) {
     }
     var aChars;
     for(var idx =1; idx<=string_length(chars); idx++) {
-        aChars[idx] = chr(string_char_at(chars, idx));
+        aChars[idx] = string_char_at(chars, idx);
     }
     
     var removeChar = false;
     do {
         removeChar = false;
-        var firstChar = chr(string_char_at(str, 0));
+        var firstChar = string_char_at(str, 0);
         for(var z=1; z<=string_length(chars); z++) {
             if(aChars[z] = firstChar) {
                 removeChar = true;

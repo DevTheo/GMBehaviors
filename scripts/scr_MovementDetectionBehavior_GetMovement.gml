@@ -31,10 +31,10 @@ if(joystickNum > -1 && gamepad_is_supported() && gamepad_is_connected(joystickNu
     }
 }
 
-var keyUp = obj[? "keyUp"];
-var keyDown = obj[? "keyDown"];
-var keyLeft = obj[? "keyLeft"];
-var keyRight = obj[? "keyRight"];
+var upKey = obj[? "keyUp"];
+var downKey = obj[? "keyDown"];
+var leftKey = obj[? "keyLeft"];
+var rightKey = obj[? "keyRight"];
 
 var otherUp = false;
 var otherDown = false;
@@ -63,21 +63,24 @@ if (ds_map_exists(obj, "keyUpDownRight") && keyboard_check(ord(obj[? "keyUpDownR
     otherDown = true;    
 }
 
-if (otherDown || joystickY > 0 || keyboard_check(keyDown)) { 
+if (otherDown || joystickY > 0 || keyboard_check(downKey)) { 
     down = true;
-} else if(otherUp || joystickY < 0 || keyboard_check(keyUp)) { 
+} else if(otherUp || joystickY < 0 || keyboard_check(upKey)) { 
     up = true;
 }
-if (otherRight || joystickX > 0 || keyboard_check(keyRight)) { 
+if (otherRight || joystickX > 0 || keyboard_check(rightKey)) { 
     right = true;
-} else if (otherLeft || joystickX < 0 || keyboard_check(keyLeft)) { 
+} else if (otherLeft || joystickX < 0 || keyboard_check(leftKey)) { 
     left = true;
 }
 
-var rtn = ds_map_create();
-rtn[? "up"] = up;
-rtn[? "down"] = down;
-rtn[? "left"] = left;
-rtn[? "right"] = right;
+if(!is_undefined(global.MovementDetection)) {
+    global.MovementDetection = ds_map_create();
+}
 
-return rtn;
+global.MovementDetection[? "up"] = up;
+global.MovementDetection[? "down"] = down;
+global.MovementDetection[? "left"] = left;
+global.MovementDetection[? "right"] = right;
+
+return global.MovementDetection;
