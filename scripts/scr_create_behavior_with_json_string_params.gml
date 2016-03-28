@@ -12,7 +12,7 @@ if(!is_string(argument0)) {
     return undefined;
 }
 
-var obj = json_decode(argument0);
+var obj = scr_parse_kv_params(argument0);
 if(!is_undefined(obj[? "default"])) {
     obj = obj[? "default"];
 }

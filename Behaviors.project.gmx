@@ -110,7 +110,7 @@
       <object>objects\obj_bullet</object>
       <object>objects\obj_Enemy</object>
       <object>objects\obj_EnemyMaker</object>
-      <object>objects\obj_shoter_player</object>
+      <object>objects\obj_shooter_player</object>
     </objects>
     <objects name="Platformer">
       <object>objects\obj_block</object>

@@ -23,7 +23,7 @@ if (is_string(str)) {
         if(removeChar) {
             str = string_copy(str, 1, string_length(str)-1); // remove 1 char from end
         }
-    } until (removeChar)
+    } until (!removeChar || str == "")
 }
 
 return str;

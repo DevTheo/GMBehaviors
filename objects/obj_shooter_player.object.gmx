@@ -48,8 +48,8 @@ for(var joyNum=1; joyNum&lt;=4; joyNum++) {
     }
 }
 
-MovementDetectionBehavior("default:{target: " + string(self.id) + 
-                           ", joystickNumber:" + string(joystickNum) + " }");
+MovementDetectionBehavior("target: " + string(self.id) + 
+                           ", joystickNumber:" + string(joystickNum));
     
 SimpleMovableBehavior(self.id, 5);
 // argument list:
