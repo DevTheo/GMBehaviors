@@ -13,4 +13,6 @@ if (!is_undefined(argument0.behaviors)) {
 }
 
 obj[? "BehaviorName"] = argument1;
+obj[? "_destroy_"] = scr_destroy_behavior_base;
+
 return obj;

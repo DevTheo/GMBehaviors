@@ -31,6 +31,7 @@
     <scripts name="behaviors">
       <script>scripts\scr_create_behavior_base.gml</script>
       <script>scripts\scr_create_behavior_with_json_string_params.gml</script>
+      <script>scripts\scr_destroy_behavior_base.gml</script>
       <scripts name="Properties">
         <script>scripts\scr_behavior_property.gml</script>
         <script>scripts\scr_BehaviorProp_BulletDir.gml</script>

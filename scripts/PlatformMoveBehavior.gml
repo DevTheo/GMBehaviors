@@ -21,10 +21,6 @@ if(is_undefined(target)) {
     script_execute(scr_BehaviorProp_Target, obj, target);
 }
 
-
-if(!ds_map_exists(obj, "gravity")) {
-    obj[? "gravity"] = 0.5;
-}
 if(!ds_map_exists(obj, "button"))
     obj[? "button"] = -1;
 

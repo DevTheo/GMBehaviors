@@ -28,4 +28,6 @@ if(ds_map_exists(obj, "target")) {
     }
 }
 
+obj[? "_destroy_"] = scr_destroy_behavior_base;
+
 return obj;

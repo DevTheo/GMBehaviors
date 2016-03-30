@@ -92,6 +92,8 @@ var wallOnLeft = !place_free(spriteLeft - 1, spriteMiddle);
 var wallOnRight = !place_free(spriteRight + 1, spriteMiddle);
 
 var onGround = !place_free(spriteCenter, spriteBottom + 1); // TODO: Add detection for ladders
+
+
 show_debug_message("on ground: " + string(onGround));
 var wallAbove = !place_free(spriteCenter, spriteTop - 1); // TODO: Add detection for ladders
 show_debug_message("wall above: " + string(wallAbove));
@@ -108,14 +110,38 @@ if (mvJump && (canJump || canDoubleJump)) {
     if(!(mvJump && canJump)) {
         canDoubleJump = false;
     }
-    //mvJump = true;
 } else {
     mvJump = false;
 }
 
+for(var inc = 2; inc <= target.vspeed; inc++) {
+    if(!place_free(spriteCenter, spriteBottom + inc))
+    {
+        target.vspeed = inc;
+        break;
+    }    
+}
+if(target.vspeed < 0)
+    for(var inc = 0; inc >= target.vspeed; inc++) {
+        if(!place_free(spriteCenter, spriteBottom + inc))
+        {
+            target.vspeed = inc;
+            break;
+        }        
+    }
+
+
 // tutorial collide with ground
 if (onGround && target.vspeed > 0) {
-    move_contact_all(270, 12);
+    var inc = 1;
+    while (place_free(spriteCenter, spriteBottom + inc))
+        inc++;
+    target.y = spriteMiddle + inc;
+    target.vspeed = 0;
+    target.gravity = 0;
+    target.dir = 270;
+//    var block = instance_place(spriteCenter, spriteBottom+1);
+//    move_contact_all(270, 1); 
 }
 
 // if collide with wall above
@@ -172,6 +198,5 @@ if (mvRight) {
         target.x += moveSpeed;
     }
 }
-
 
 obj[? "CanDblJump"] = canDoubleJump ;

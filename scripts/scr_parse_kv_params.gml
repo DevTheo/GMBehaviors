@@ -1,9 +1,11 @@
 var kvString = argument0;
-kvString = scr_rtrim_char(kvString, " },") + ",";
+if (string_char_at(kvString, string_length(kvString)) != ",")
+    kvString = kvString + ",";
+    
+//kvString = scr_rtrim_char(kvString, " },") + ",";
 var result = ds_map_create();
 var addKeys = true;
 var keysList = -1;
-var currentKVP = "";
 var currentKey = "";
 
 // ending spaces, and } are not gone from the string
@@ -40,10 +42,10 @@ while (commaCount > 0) {
     } else if (string_upper(value) == "TRUE") {
         value = true;
     } else {
-        var negate = 1;
-        if (string_pos("-", value) > 0) 
-            negate = -1;
-        value = negate * real(string_digits(value));
+        //var negate = 1;
+//        if (string_pos("-", value) > 0) 
+  //          negate = -1;
+        value = real(value); //negate * real(string_digits(value));
     }
     
     // finally store value in result
@@ -53,7 +55,7 @@ while (commaCount > 0) {
     }
     commaCount--;
     var kvpStart = commaPlace + 1;    
-    kvString = string_copy(kvString, kvpStart, string_length(kvString) - kvpStart);
+    kvString = string_copy(kvString, kvpStart, string_length(kvString));
     
     var kvpStart = 1;
     var commaPlace = string_pos(",", kvString);
