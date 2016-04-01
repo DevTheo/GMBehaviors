@@ -83,6 +83,7 @@
       <scripts name="PlatformMoveBehavior">
         <script>scripts\PlatformMoveBehavior.gml</script>
         <script>scripts\scr_PlatformMoveBehavior_step.gml</script>
+        <script>scripts\scr_destroy_platformmovebehavior.gml</script>
       </scripts>
       <scripts name="MultipleSpritesBehavior">
         <script>scripts\MultipleSpritesBehavior.gml</script>
@@ -114,7 +115,7 @@
       <object>objects\obj_shooter_player</object>
     </objects>
     <objects name="Platformer">
-      <object>objects\obj_block</object>
+      <object>objects\obj_wall</object>
       <object>objects\obj_platform_player</object>
     </objects>
   </objects>
