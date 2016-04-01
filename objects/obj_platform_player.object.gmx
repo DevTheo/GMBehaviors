@@ -53,6 +53,9 @@ var mvJson = "target: " + string(self.id) +
 show_debug_message("mvJson :" + mvJson);
 
 MovementDetectionBehavior(mvJson);
+
+var blocks = ds_list_create();
+ds_list_add(blocks, obj_wall);
    
 var platJson = 
    "target: " + string(self.id) + "," +
@@ -60,6 +63,7 @@ var platJson =
    "jumpStrength: 10," +
    "button: -1," +
    "keyJump: ' '," +   
+   "blocks: " + string(blocks) + "," +
    "gravity: 0.5";    //"ladderBlocks: -1," +
 
 show_debug_message("platJson :" + platJson);

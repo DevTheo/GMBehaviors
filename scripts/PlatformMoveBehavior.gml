@@ -5,11 +5,12 @@
 params:
 {
     speed: 4,
-    jumpStrength: 10,    
+    jumpStrength: 7,    
     button: -1, // any
     keyJump: ' ',    
     ladderBlocks: dslist,
-    gravity:0.5 // gravity inc
+    blocks, dslist, // required, solid objects
+    gravity:0.2 // gravity inc
 }
 */
 var obj = scr_create_behavior_with_json_string_params(argument0, "PlatformMoveBehavior");
@@ -34,10 +35,14 @@ obj[? "prop_MoveSpeed"] = scr_BehaviorProp_MoveSpeed;
 obj[? "prop_JoystickButton"] = scr_BehaviorProp_Button;
 obj[? "CanDblJump"] = true;
 
+obj[? "hsp"] = 0;
+obj[? "vsp"] = 0;
+
 var events = obj[? "events"];
 
 ds_list_add(events[? "keys"], "step");
 events[? "step"] = scr_PlatformMoveBehavior_step;
+obj[? "_destroy_"] = scr_destroy_platformmovebehavior;
 
 obj[? "events"] = events;
 

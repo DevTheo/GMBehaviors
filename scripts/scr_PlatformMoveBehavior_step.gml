@@ -9,6 +9,9 @@ var timeout = scr_BehaviorProp_Timeout(obj);
 var gravityInc = obj[? "gravity"];
 var jumpStrength = obj[? "jumpStrength"];
 var ladderBlocks = -1;
+var hsp = obj[?"hsp"];
+var vsp = obj[?"vsp"];
+//var object_Wall = obj_wall;
 
 if(ds_map_exists(obj, "ladderBlocks")) {
     ladderBlocks = obj[? "ladderBlocks"];
@@ -47,156 +50,76 @@ if (joystickNumber > 0) {
     }
 }
 
-mvLeft = movement[? "left"];
+mvLeft = -movement[? "left"];
 mvRight = movement[? "right"];
+
+var move = mvLeft + mvRight;
 
 var keyJumpDown = keyboard_check(ord(keyJump));
 var mvJump = (joyJump == true || keyJumpDown == true);
 
-// Now we can actually make changes
-var offsetX = sprite_get_xoffset(target.sprite_index); // ??
-var offsetY = sprite_get_yoffset(target.sprite_index); // ??
+hsp = move * moveSpeed;
 
-var spriteTop = target.y - offsetY;
-var spriteMiddle = spriteTop + (target.sprite_height/2);
-var spriteBottom = target.y + (target.sprite_height - offsetY);
-var spriteLeft = target.x - offsetX;
-var spriteCenter = spriteLeft + (target.sprite_width/2);
-var spriteRight = target.x + (target.sprite_width - offsetX);
+// wall below
+var onGround = false;
+var willCollideV = false;
+var willCollideH = false;
+var blocks = obj[? "blocks"];
+for(var i=0; i <= ds_list_size(blocks); i++) {
+    var object_Wall = ds_list_find_value(blocks, i);
+    if (!is_undefined(object_Wall)) {
+        onGround = onGround || place_meeting(target.x,target.y+1,object_Wall);
 
-show_debug_message("x: " + string(target.x));
-show_debug_message("offsetX: " + string(offsetX));
-show_debug_message("spriteLeft: " + string(spriteLeft));
-show_debug_message("spriteCenter: " + string(spriteCenter));
-show_debug_message("spriteRight: " + string(spriteRight));
+        willCollideH = willCollideH || place_meeting(target.x + hsp,target.y, object_Wall);
+        willCollideV = willCollideV || place_meeting(target.x, target.y + vsp, object_Wall);
+    }
+}
 
-// detect ladder blocks
-var ladderOnLeft = false;
-var ladderOnRight = false;
-if (ladderBlocks > -1) {
-    var ladderCount = ds_list_size(ladderBlocks);
-    for(var idx=0; idx<ladderCount; idx++) {
-        var block = ds_list_find_value(ladderBlocks, idx);
-        if(!is_undefined(block)) {
-            if(!ladderOnLeft && position_meeting(spriteLeft-1, offsetY, block))
-                ladderOnLeft = true;
-            if(!ladderOnRight && position_meeting(spriteRight+1, offsetY, block))
-                ladderOnRight = true;
-            if(ladderOnLeft && ladderOnRight)
-                break; // no need to continue
+if (vsp < 10) vsp += gravityInc;
+
+if (onGround) {
+    vsp = mvJump * -jumpStrength;
+}
+
+//Horizontal Collision
+if (willCollideH) {
+    var wallBesideCheck = false;
+    while (!wallBesideCheck) {    
+       for(var i=0; i <= ds_list_size(blocks); i++) {
+            var object_Wall = ds_list_find_value(blocks, i);
+            if (!is_undefined(object_Wall)) {
+                wallBesideCheck = wallBesideCheck || 
+                    place_meeting(target.x + sign(hsp),target.y, object_Wall);
+            }
+       }
+       if (!wallBesideCheck) {    
+            target.x += sign(hsp);    
+       }
+    }
+    hsp = 0;    
+}
+target.x += hsp;
+
+//Vertical Collision
+if (willCollideV) {
+    var wallBelowCheck = false;
+    while (!wallBelowCheck) {
+        for(var i=0; i <= ds_list_size(blocks); i++) {
+            var object_Wall = ds_list_find_value(blocks, i);
+            if (!is_undefined(object_Wall)) {
+                wallBelowCheck = wallBelowCheck || 
+                    place_meeting(target.x, target.y + sign(vsp), object_Wall); 
+            }
+        }
+        if (wallBelowCheck) {
+            target.y += sign(vsp);
         }
     }
+    vsp =0;    
 }
 
-var wallOnLeft = !place_free(spriteLeft - 1, spriteMiddle);
-var wallOnRight = !place_free(spriteRight + 1, spriteMiddle);
+target.y += vsp;
 
-var onGround = !place_free(spriteCenter, spriteBottom + 1); // TODO: Add detection for ladders
+obj[?"hsp"] = hsp;
+obj[?"vsp"] = vsp;
 
-
-show_debug_message("on ground: " + string(onGround));
-var wallAbove = !place_free(spriteCenter, spriteTop - 1); // TODO: Add detection for ladders
-show_debug_message("wall above: " + string(wallAbove));
-
-var wallJump = wallOnLeft || wallOnRight; 
-var canJump = wallJump || onGround;
-              
-var canDoubleJump = obj[? "CanDblJump"];
-if (!place_free(offsetX, spriteBottom + 1)) {
-    canDoubleJump = true;
-}
-
-if (mvJump && (canJump || canDoubleJump)) {
-    if(!(mvJump && canJump)) {
-        canDoubleJump = false;
-    }
-} else {
-    mvJump = false;
-}
-
-for(var inc = 2; inc <= target.vspeed; inc++) {
-    if(!place_free(spriteCenter, spriteBottom + inc))
-    {
-        target.vspeed = inc;
-        break;
-    }    
-}
-if(target.vspeed < 0)
-    for(var inc = 0; inc >= target.vspeed; inc++) {
-        if(!place_free(spriteCenter, spriteBottom + inc))
-        {
-            target.vspeed = inc;
-            break;
-        }        
-    }
-
-
-// tutorial collide with ground
-if (onGround && target.vspeed > 0) {
-    var inc = 1;
-    while (place_free(spriteCenter, spriteBottom + inc))
-        inc++;
-    target.y = spriteMiddle + inc;
-    target.vspeed = 0;
-    target.gravity = 0;
-    target.dir = 270;
-//    var block = instance_place(spriteCenter, spriteBottom+1);
-//    move_contact_all(270, 1); 
-}
-
-// if collide with wall above
-if (wallAbove && target.vspeed > 0) {
-    target.vspeed = 0;
-}
-
-// Tutorial Step code...
-if (!onGround) {
-    target.gravity_direction = 270;
-    target.gravity = gravityInc;
-} else {
-    target.gravity = 0;
-    target.gravity_direction = 270;    
-}
-if (target.vspeed > 12) {
-    target.vspeed = 12;
-}
-
-// Tutorial Jump key code...
-if (mvJump) {
-    target.vspeed = -10;
-}
-
-// Tutorial left key code...
-if (mvLeft) {
-    if(renderSpriteChanges) {
-        if((!onGround || mvJump) && target.sprite_index != spriteJumpLeft) {
-            target.sprite_index = spriteJumpLeft;
-            target.image_index = 0;
-        } else if (target.sprite_index != spriteLeft) {
-            target.sprite_index = spriteLeft;
-            target.image_index = 0;
-        }
-    }
-    
-    if( !wallOnLeft) {
-        target.x -= moveSpeed;
-    }
-}
-
-// Tutorial right key code...
-if (mvRight) {    
-    if(renderSpriteChanges) {
-        if((!onGround || mvJump) && target.sprite_index != spriteJumpRight) {
-            target.sprite_index = spriteJumpRight;
-            target.image_index = 0;
-        } else if (target.sprite_index != spriteRight) {
-            target.sprite_index = spriteRight;
-            target.image_index = 0;
-        }    
-    }
-    if(!wallOnRight) {
-        target.x += moveSpeed;
-    }
-}
-
-obj[? "CanDblJump"] = canDoubleJump ;
