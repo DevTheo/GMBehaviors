@@ -12,6 +12,7 @@ var ladderBlocks = -1;
 var hsp = obj[?"hsp"];
 var vsp = obj[?"vsp"];
 var blocks = obj[? "blocks"];
+var jumps = obj[? "jumps"];
 
 if(ds_map_exists(obj, "ladderBlocks")) {
     ladderBlocks = obj[? "ladderBlocks"];
@@ -62,8 +63,15 @@ hsp = move * moveSpeed;
 
 if (vsp < 10) vsp += gravityInc;
 
-if (scr_dslist_objects_place_meeting(x,y+1,blocks)) {
+var onGround = scr_dslist_objects_place_meeting(x,y+1,blocks);
+if (onGround)
+    jumps =0;
+    
+if ((mvJump && jumps < 2 && vsp >= 0) ||
+    onGround) {
     vsp = mvJump * -jumpStrength;
+    if (mvJump) jumps++;
+    if (mvJump && !onGround) jumps = 2;
 }
 
 //Horizontal Collision
@@ -87,4 +95,4 @@ target.y += vsp;
 
 obj[?"hsp"] = hsp;
 obj[?"vsp"] = vsp;
-
+obj[? "jumps"] = jumps;

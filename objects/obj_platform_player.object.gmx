@@ -66,8 +66,6 @@ var platJson =
    "blocks: " + string(blocks) + "," +
    "gravity: 0.5";    //"ladderBlocks: -1," +
 
-show_debug_message("platJson :" + platJson);
-
 PlatformMoveBehavior(platJson);                      
 </string>
           </argument>

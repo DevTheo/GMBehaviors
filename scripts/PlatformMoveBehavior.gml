@@ -30,10 +30,7 @@ if (!ds_map_exists(obj, "keyJump"))
     obj[? "keyJump"] = vk_space;
 }
 
-obj[? "prop_keyJump"] = scr_BehaviorProp_JumpKey;
-obj[? "prop_MoveSpeed"] = scr_BehaviorProp_MoveSpeed;
-obj[? "prop_JoystickButton"] = scr_BehaviorProp_Button;
-obj[? "CanDblJump"] = true;
+obj[? "jumps"] = 0;
 
 obj[? "hsp"] = 0;
 obj[? "vsp"] = 0;
