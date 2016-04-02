@@ -11,7 +11,7 @@ var jumpStrength = obj[? "jumpStrength"];
 var ladderBlocks = -1;
 var hsp = obj[?"hsp"];
 var vsp = obj[?"vsp"];
-//var object_Wall = obj_wall;
+var blocks = obj[? "blocks"];
 
 if(ds_map_exists(obj, "ladderBlocks")) {
     ladderBlocks = obj[? "ladderBlocks"];
@@ -60,60 +60,25 @@ var mvJump = (joyJump == true || keyJumpDown == true);
 
 hsp = move * moveSpeed;
 
-// wall below
-var onGround = false;
-var willCollideV = false;
-var willCollideH = false;
-var blocks = obj[? "blocks"];
-for(var i=0; i <= ds_list_size(blocks); i++) {
-    var object_Wall = ds_list_find_value(blocks, i);
-    if (!is_undefined(object_Wall)) {
-        onGround = onGround || place_meeting(target.x,target.y+1,object_Wall);
-
-        willCollideH = willCollideH || place_meeting(target.x + hsp,target.y, object_Wall);
-        willCollideV = willCollideV || place_meeting(target.x, target.y + vsp, object_Wall);
-    }
-}
-
 if (vsp < 10) vsp += gravityInc;
 
-if (onGround) {
+if (scr_dslist_objects_place_meeting(x,y+1,blocks)) {
     vsp = mvJump * -jumpStrength;
 }
 
 //Horizontal Collision
-if (willCollideH) {
-    var wallBesideCheck = false;
-    while (!wallBesideCheck) {    
-       for(var i=0; i <= ds_list_size(blocks); i++) {
-            var object_Wall = ds_list_find_value(blocks, i);
-            if (!is_undefined(object_Wall)) {
-                wallBesideCheck = wallBesideCheck || 
-                    place_meeting(target.x + sign(hsp),target.y, object_Wall);
-            }
-       }
-       if (!wallBesideCheck) {    
-            target.x += sign(hsp);    
-       }
+if (scr_dslist_objects_place_meeting(x + hsp,y,blocks)) {
+    while(!scr_dslist_objects_place_meeting(x + sign(hsp),y, blocks)) {
+        target.x += sign(hsp);    
     }
     hsp = 0;    
 }
 target.x += hsp;
 
 //Vertical Collision
-if (willCollideV) {
-    var wallBelowCheck = false;
-    while (!wallBelowCheck) {
-        for(var i=0; i <= ds_list_size(blocks); i++) {
-            var object_Wall = ds_list_find_value(blocks, i);
-            if (!is_undefined(object_Wall)) {
-                wallBelowCheck = wallBelowCheck || 
-                    place_meeting(target.x, target.y + sign(vsp), object_Wall); 
-            }
-        }
-        if (wallBelowCheck) {
+if (scr_dslist_objects_place_meeting(x, y + vsp, blocks)) {
+    while(!scr_dslist_objects_place_meeting(x,y + sign(vsp), blocks)) {
             target.y += sign(vsp);
-        }
     }
     vsp =0;    
 }

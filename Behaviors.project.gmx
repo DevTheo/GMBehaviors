@@ -99,6 +99,9 @@
       <script>scripts\scr_parse_kv_params.gml</script>
       <script>scripts\scr_rtrim_char.gml</script>
     </scripts>
+    <scripts name="dslist of objects">
+      <script>scripts\scr_dslist_objects_place_meeting.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="behavior_lib">
